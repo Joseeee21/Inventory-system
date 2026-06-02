@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Measurements</title>
+</head>
+
+<body>
+    <h1>Measurement List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Measurement Name</th>
+                <th>Abbreviation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% if (measurements.length === 0) { %>
+                    <tr>
+                        <td colspan="5">No measurement found.</td>
+                    </tr>
+            <% } else { %>
+                
+                <% measurements.forEach(function(measurement){ %>
+                    <tr>
+                        <td><%= measurement.measurementID %></td>
+                        <td><%= measurement.measurementName %></td>
+                        <td><%= measurement.abbreviation %></td>
+                        <td>
+                            <form action="/measurements/<%= measurement.measurementID %>/delete" method="POST" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>    
+    <br><br>
+    
+    <a href="/products">Back to Product List</a>
+</body>
+</html>

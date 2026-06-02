@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Stock</title>
+    </head>
+
+    <body>
+        <h1>Add Stock</h1>
+
+        <p><strong>Product ID:</strong> <%= product.productID %></p>
+        <p><strong>SKU:</strong> <%= product.productSKU %></p>
+        <p><strong>Product Name:</strong> <%= product.productName %></p>
+
+        <form action="/products/<%=product.productID %>/stock/add" method="POST">
+            <label>Movement Type:</label>
+            <select name="movementTypeID" required>
+                <option value="">--Select movement type--</option>
+                <% movementTypes.forEach(function(type) { %>
+                    <option value="<%= type.movementTypeID %>">
+                        <%= type.movementTypeName %>
+                    </option>
+                <% }) %>
+            </select>
+            <br><br>
+            
+            <label>Quantity:</label>
+            <input type="number" name="quantity" min="0.01" step="0.01" required>
+            <br><br>
+
+            <label>Remarks:</label>
+            <textarea name="remarks"></textarea>
+            <br><br>
+
+            <button type="submit">Save Stock Movement</button>
+        </form>
+
+        <a href="/products/<%= product.productID %>">Back</a>
+    </body>
+</html>

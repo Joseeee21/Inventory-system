@@ -1,0 +1,10 @@
+body.homepage{
+    background-color: #7581A8;
+    margin:0; 
+    padding:0; 
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}

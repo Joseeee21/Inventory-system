@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product Details</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <h1>Edit Product</h1>
+    
+    <form action="/products/<%= product.productID %>/edit" method="POST">
+        <label>Product Name :</label>
+        <input type="text" name="productName" value="<%= product.productName %>"  required> 
+        <br><br>
+
+        <label>Product SKU :</label>
+        <input type="text" name="productSKU" value="<%= product.productSKU %>" readonly>
+        <br><br>
+
+        <label>Category : </label>
+        <input type="text" value="<%= product.categoryName %>" readonly>
+        <br><br>
+
+        <label>Measurement : </label>
+        <input type="text" value="<%= product.measurementName %>" readonly>
+        <br><br>
+
+        <label>Description : </label>
+        <textarea name="productDesc"><%= product.productDesc %></textarea>
+        <br><br>
+
+        <button type="submit">Update Product</button>
+        <br><br>
+
+        <a href="/products">Back to Products</a>
+    </form>
+</body>
+</html>

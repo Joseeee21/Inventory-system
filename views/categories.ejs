@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Categories</title>
+</head>
+
+<body>
+    <h1>Category List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Category Name</th>
+                <th>Category Code</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% if (categories.length === 0) { %>
+                    <tr>
+                        <td colspan="5">No category found.</td>
+                    </tr>
+            <% } else { %>
+                
+                <% categories.forEach(function(category){ %>
+                    <tr>
+                        <td><%= category.categoryID %></td>
+                        <td><%= category.categoryName %></td>
+                        <td><%= category.categoryCode %></td>
+                        <td>
+                            <form action="/categories/<%= category.categoryID %>/delete" method="POST" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>    
+    <br><br>
+    
+    <a href="/products">Back to Products</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Category</title>
+</head>
+
+<body>
+    <h1>Add Measurement</h1>
+    <form action="/measurements/add" method="POST">
+        <label>Measurement Name : </label>
+        <input type="text" name="measurementName" required>
+        <br><br>
+
+        <label>Abbreviation :</label>
+        <input type="text" name="abbreviation" required>
+
+        <button type="submit">Save Measurement</button>
+    </form>    
+
+    <a href="/measurements">Back</a>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Details</title>
+    </head>
+
+    <body>
+        <h1>Product Details</h1>
+        
+        <p><strong>Product ID:</strong> <%= product.productID %></p>
+        <p><strong>SKU:</strong> <%= product.productSKU %></p>
+        <p><strong>Name:</strong> <%= product.productName %></p>
+        <p><strong>Category:</strong> <%= product.categoryName %></p>
+        <p><strong>Measurement:</strong> <%= product.measurementName %></p>
+        <p><strong>Description:</strong> <%= product.productDesc %></p>
+        <p><strong>Current Stock:</strong> <%= product.currentStock %></p>
+
+        <a href="/products/<%= product.productID %>/stock/add">
+            <button type="button">Add Stock</button>
+        </a>
+
+        <a href="/products">
+            <button type="button">Back to Product</button>
+        </a>
+
+        <h2>Stock Movement History</h2>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Movement Type</th>
+                    <th>Quantity</th>
+                    <th>Remarks</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(movements.length === 0) { %>
+                    <tr>
+                        <td colspan="4">No stock movements yet.</td>
+                    </tr>
+                <% } else { %>
+                    <% movements.forEach(function(movement) { %>
+                        <tr>
+                            <td><%= movement.movementTypeName %></td>
+                            <td><%= movement.quantity %></td>
+                            <td><%= movement.remarks %></td>
+                            <td><%= movement.createdAt %></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </body>
+</html>

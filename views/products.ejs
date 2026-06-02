@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Products</title>
+        <link rel="stylesheet" href="/main.css">
+    </head>
+
+    <body class="all-product-list">
+        <h1>Product List</h1>
+        <a href="/products/add">
+            <button>Add New Product</button>
+        </a>
+        <br><br>
+
+        <a href="/categories/add">
+            <button>Add New Category</button>
+        </a>
+        <br><br>
+
+        <a href="/measurements/add">
+            <button>Add New Measurement</button>
+        </a>
+        <br><br>
+
+        <br>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Measurement</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if (products.length === 0) { %>
+                    <tr>
+                        <td colspan="5">No products found.</td>
+                    </tr>
+                <% } else { %>
+                    
+                    <% products.forEach(function(product){ %>
+                        <tr>
+                            <td><%= product.productSKU %></td>
+                            <td><%= product.productName %></td>
+                            <td><%= product.categoryName %></td>
+                            <td><%= product.measurementName %> (<%= product.abbreviation %>)</td>
+                            <td><%= product.productDesc %></td>
+
+                            <td>
+                                <a href="/products/<%= product.productID %>">
+                                    <button>Details</button>
+                                </a>
+                                
+                                
+                                <a href="/products/<%= product.productID %>/edit">
+                                    <button>Edit</button> 
+                                </a>
+
+                                <form action="/products/<%= product.productID %>/delete" method="POST" style="display:inline;">
+                                    <button type="submit">Delete</button>
+
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+
+            </tbody>
+        </table>
+
+    </body>
+
+</html>

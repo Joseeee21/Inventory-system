@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <h1>Add Product</h1>
+    <form action="/products/add" method="POST">
+        <label>Product Name :</label>
+        <input type="text" name="productName" required>
+        <br><br>
+
+        <label>Category :</label>
+        <select name="categoryID" id="categoryID" required>
+            <option value="">Select Category</option>
+
+            <% categories.forEach(function(category) { %>
+                <option value="<%= category.categoryID %>">
+                    <%= category.categoryName %>
+                </option>
+            <% }) %>
+        </select>
+        <br><br>
+
+        <label>Measurement :</label>
+        <select name="measurementID" id="measurementID" required>
+            <option value="">Select Measurement</option>
+            <% measurements.forEach(function(measurement){ %>
+                <option value="<%= measurement.measurementID %>">
+                    <%= measurement.measurementName %> (<%= measurement.abbreviation %>)
+                </option>
+            <% }) %>
+        </select>
+        <br><br>
+
+        <label>Product SKU :</label>
+        <input type="text" name="productSKU" id="productSKU" readonly required>
+        <br><br>
+
+        <label>Description :</label>
+        <textarea name="productDesc"></textarea>
+        <br><br>
+
+        <button type="submit">Add Product</button>
+    </form>
+    <br>
+
+    <!-- <a href="/products">Back to Product List</a> -->
+    
+    <script>
+        const categorySelect = document.getElementById("categoryID");
+        const measurementSelect = document.getElementById("measurementID");
+        const skuInput = document.getElementById("productSKU"); 
+
+        async function generateSKU(){
+            const categoryID = categorySelect.value;
+            const measurementID = measurementSelect.value; 
+
+            if (!categoryID || !measurementID){
+                skuInput.value = "";
+                return; 
+            }
+
+            const response = await fetch(`/products/generate-sku?categoryID=${categoryID}&measurementID=${measurementID}`);
+            const data = await response.json(); 
+
+            if(data.sku){
+                skuInput.value = data.sku; 
+            }
+        }
+        categorySelect.addEventListener("change", generateSKU);
+        measurementSelect.addEventListener("change", generateSKU);
+    </script>
+
+</body>
+</html>
