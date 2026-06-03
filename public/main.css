@@ -1,3 +1,4 @@
+/* styling for homepage */
 body.homepage{
     background-color: #7581A8;
     margin:0; 
@@ -7,4 +8,18 @@ body.homepage{
     align-items: center;
     height: 100vh;
     font-family: Arial, sans-serif;
+}
+
+.view-product-btn{
+    background-color: #DEB1C0;
+    margin: 10 px 5px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Product List page */
+.all-product-list{
+    background-color: #7581A8;
 }
