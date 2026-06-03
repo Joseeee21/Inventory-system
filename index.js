@@ -28,6 +28,10 @@ app.use(session({
     saveUninitialized: true
 })); 
 
+app.get('/', (req, res) => {
+    res.render('home-page.ejs');
+})
+
 const userRoutes = require('./routes/users');
 app.use('/', userRoutes); 
 
